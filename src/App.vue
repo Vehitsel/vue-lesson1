@@ -3,20 +3,14 @@
     <div class="app-content">
       <div id="nav">
           <router-link to="/">Home</router-link> |
-          <router-link to="/about">About</router-link>
+          <router-link to="/about">About</router-link> |
+          <router-link to="/person">Person</router-link>
           <h2 class="title">
-            <!-- {{message}} -->
             {{$route.meta.title}}
           </h2>
-          <input type="text" v-model="message">
       </div>
       <router-view/>
     </div>
-    <!-- <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/> -->
   </div>
 </template>
 

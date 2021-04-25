@@ -1,5 +1,8 @@
 <template>
   <div class="home-page">
+    <CreateTodo 
+    @create-todo="onSubmitClicked"
+    /> 
     <div v-if="loading">
       Loading....
     </div>
@@ -15,10 +18,12 @@
 
 <script>
 import TodoList from '@/components/TodoList';
+import CreateTodo from '@/components/CreateTodo';
 export default {
   name: 'Home',
   components: {
-    TodoList
+    TodoList,
+    CreateTodo
   },
   data: () => ({
     todos: [],
@@ -28,6 +33,21 @@ export default {
     this.fetchtodos()
   },
   methods: {
+    onSubmitClicked(title) {
+      if (title != '') {
+        let max = 0
+        if (this.todos.length != 0) {
+          max = this.todos.reduce((acc, curr) => acc.id > curr.id ? acc : curr).id + 1;
+        };
+        let todo = {
+          id: max,
+          title: title,
+          complited: false,
+          userId: 1,
+        }
+        this.todos.push(todo);
+      }
+    },
     onRemovedClicked(id) {
         this.todos = this.todos.filter((todo) => todo.id != id);
     },
